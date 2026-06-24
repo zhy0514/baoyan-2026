@@ -18,8 +18,8 @@ const App = {
 async function loadData() {
   try {
     const [progResp, metaResp] = await Promise.all([
-      fetch('../data/programs.json'),
-      fetch('../data/meta.json'),
+      fetch('data/programs.json'),
+      fetch('data/meta.json'),
     ]);
     App.programs = (await progResp.json()).programs;
     App.meta = await metaResp.json();
