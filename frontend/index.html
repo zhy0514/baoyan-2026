@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎓 2026 985高校夏令营/预推免信息聚合</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== header ===== -->
+<header class="header">
+  <h1>🎓 2026年985高校夏令营/预推免信息聚合</h1>
+  <p class="subtitle">
+    覆盖 <span>39所</span> 985高校 | 数学 · 统计 · 人工智能 · 计算机 | 每日 07:00 自动更新
+  </p>
+</header>
+
+<!-- ===== update banner ===== -->
+<div class="update-banner">
+  <span class="dot"></span>
+  最后更新于 <span id="update-time">加载中...</span>
+  &nbsp;|&nbsp; 数据来源：各高校研究生院/学院官网
+</div>
+
+<!-- ===== filters ===== -->
+<div class="filters">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search-input" placeholder="搜索学校、专业、关键词...">
+  </div>
+
+  <!-- university multi-select -->
+  <div class="uni-select">
+    <button class="uni-trigger">
+      <span class="uni-label">全部大学</span>
+      <span class="uni-count"></span>
+      <span>▾</span>
+    </button>
+    <div class="uni-dropdown" id="uni-dropdown">
+    </div>
+  </div>
+
+  <!-- major filter -->
+  <div class="filter-group">
+    <button class="filter-chip active" data-filter="major:all">全部专业</button>
+    <button class="filter-chip" data-filter="major:计算机科学与技术">计算机</button>
+    <button class="filter-chip" data-filter="major:人工智能">人工智能</button>
+    <button class="filter-chip" data-filter="major:统计学">统计学</button>
+    <button class="filter-chip" data-filter="major:数学">数学</button>
+    <button class="filter-chip" data-filter="major:软件工程">软件工程</button>
+    <button class="filter-chip" data-filter="major:数据科学">数据科学</button>
+    <button class="filter-chip" data-filter="major:网络空间安全">网安</button>
+  </div>
+
+  <!-- type filter -->
+  <div class="filter-group">
+    <button class="filter-chip active" data-filter="type:all">全部类型</button>
+    <button class="filter-chip" data-filter="type:夏令营">夏令营</button>
+    <button class="filter-chip" data-filter="type:预推免">预推免</button>
+  </div>
+
+  <!-- status filter -->
+  <div class="filter-group">
+    <button class="filter-chip active" data-filter="status:all">全部状态</button>
+    <button class="filter-chip" data-filter="status:报名中">报名中</button>
+    <button class="filter-chip" data-filter="status:即将截止">即将截止⚠️</button>
+    <button class="filter-chip" data-filter="status:已截止">已截止</button>
+  </div>
+</div>
+
+<!-- ===== toolbar ===== -->
+<div class="toolbar">
+  <div class="result-count" id="result-count">共 <strong>0</strong> 条结果</div>
+  <div style="display:flex;gap:.75rem;align-items:center;">
+    <div class="view-tabs">
+      <button class="view-tab active" data-view="card">📇 卡片</button>
+      <button class="view-tab" data-view="list">📋 列表</button>
+      <button class="view-tab" data-view="timeline">📅 时间线</button>
+    </div>
+    <select class="sort-select" id="sort-select">
+      <option value="deadline-asc">截止日期 ↑</option>
+      <option value="deadline-desc">截止日期 ↓</option>
+      <option value="university">按学校排序</option>
+      <option value="updated">最近更新</option>
+    </select>
+  </div>
+</div>
+
+<!-- ===== content ===== -->
+<main class="content">
+  <div class="card-grid" id="cards-container">
+    <!-- cards rendered by JS -->
+  </div>
+</main>
+
+<!-- ===== footer ===== -->
+<footer class="footer">
+  <p>
+    数据来源：
+    <a href="https://cs.pku.edu.cn/" target="_blank">北大CS</a> ·
+    <a href="https://iiis.tsinghua.edu.cn/" target="_blank">清华叉院</a> ·
+    <a href="https://cs.fudan.edu.cn/" target="_blank">复旦CS</a> ·
+    <a href="https://www.seiee.sjtu.edu.cn/" target="_blank">上交电院</a> ·
+    <a href="http://www.cs.zju.edu.cn/" target="_blank">浙大CS</a> ·
+    <a href="https://cs.nju.edu.cn/" target="_blank">南大CS</a>
+    &nbsp;等高校官网 &nbsp;|&nbsp;
+    <a href="https://github.com/jsjby/CS-BAOYAN-2026" target="_blank">CS-BAOYAN</a>
+  </p>
+  <p style="margin-top:.4rem;">
+    ⚠️ 信息仅供参考，请以各高校官方通知为准。如有错误，欢迎指正。
+    &nbsp;|&nbsp;
+    自动更新于每日北京时间 07:00
+  </p>
+</footer>
+
+<!-- ===== toast ===== -->
+<div class="toast" id="toast"></div>
+
+<script src="js/utils.js"></script>
+<script src="js/app.js"></script>
+<script>
+// ===== 动态生成大学下拉选项 =====
+(function() {
+  const dropdown = document.getElementById('uni-dropdown');
+  const cols = [];
+  ALL_UNIVERSITIES.forEach(name => {
+    cols.push(`<label class="uni-opt"><input type="checkbox" value="${name}"> ${name}</label>`);
+  });
+  const actions = `<div class="actions">
+    <button class="clear">清空</button>
+    <button class="confirm">确定</button>
+  </div>`;
+  dropdown.innerHTML = cols.join('') + actions;
+})();
+</script>
+</body>
+</html>
