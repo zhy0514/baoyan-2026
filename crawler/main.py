@@ -17,6 +17,12 @@ from scrapers.tsinghua import TsinghuaScraper
 from scrapers.fudan import FudanScraper
 from scrapers.sjtu import SJTUScraper
 from scrapers.zju import ZJUScraper
+from scrapers.nju import NJUScraper
+from scrapers.whu import WHUScraper
+from scrapers.sysu import SYSUScraper
+from scrapers.ecnu import ECNUScraper
+from scrapers.tongji import TongjiScraper
+from scrapers.seu import SEUScraper
 from platforms.csbaoyan import CSBaoyanScraper
 
 CST = timezone(timedelta(hours=8))
@@ -37,6 +43,12 @@ SCRAPER_REGISTRY = [
     FudanScraper,
     SJTUScraper,
     ZJUScraper,
+    NJUScraper,
+    WHUScraper,
+    SYSUScraper,
+    ECNUScraper,
+    TongjiScraper,
+    SEUScraper,
 ]
 
 
